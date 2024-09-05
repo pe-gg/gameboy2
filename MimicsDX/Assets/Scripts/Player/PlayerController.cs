@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
     }
-
+    //
     public void HandleMovementInput(Vector2 input)
     {
         movement = input.normalized;
