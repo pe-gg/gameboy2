@@ -94,6 +94,34 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""CharacterActions"",
+            ""id"": ""f8efa5bb-d8e6-460c-9bb1-ee25cd527e86"",
+            ""actions"": [
+                {
+                    ""name"": ""AButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d8e8b7c-e9c6-45fd-bf77-e634903d7e2f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""73ae244a-ebae-4ff1-981f-24553ec0bcd0"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -101,6 +129,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
         // CharacterMovement
         m_CharacterMovement = asset.FindActionMap("CharacterMovement", throwIfNotFound: true);
         m_CharacterMovement_Movement = m_CharacterMovement.FindAction("Movement", throwIfNotFound: true);
+        // CharacterActions
+        m_CharacterActions = asset.FindActionMap("CharacterActions", throwIfNotFound: true);
+        m_CharacterActions_AButton = m_CharacterActions.FindAction("AButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,8 +235,58 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
         }
     }
     public CharacterMovementActions @CharacterMovement => new CharacterMovementActions(this);
+
+    // CharacterActions
+    private readonly InputActionMap m_CharacterActions;
+    private List<ICharacterActionsActions> m_CharacterActionsActionsCallbackInterfaces = new List<ICharacterActionsActions>();
+    private readonly InputAction m_CharacterActions_AButton;
+    public struct CharacterActionsActions
+    {
+        private @CharacterInput m_Wrapper;
+        public CharacterActionsActions(@CharacterInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @AButton => m_Wrapper.m_CharacterActions_AButton;
+        public InputActionMap Get() { return m_Wrapper.m_CharacterActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CharacterActionsActions set) { return set.Get(); }
+        public void AddCallbacks(ICharacterActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CharacterActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CharacterActionsActionsCallbackInterfaces.Add(instance);
+            @AButton.started += instance.OnAButton;
+            @AButton.performed += instance.OnAButton;
+            @AButton.canceled += instance.OnAButton;
+        }
+
+        private void UnregisterCallbacks(ICharacterActionsActions instance)
+        {
+            @AButton.started -= instance.OnAButton;
+            @AButton.performed -= instance.OnAButton;
+            @AButton.canceled -= instance.OnAButton;
+        }
+
+        public void RemoveCallbacks(ICharacterActionsActions instance)
+        {
+            if (m_Wrapper.m_CharacterActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICharacterActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CharacterActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CharacterActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CharacterActionsActions @CharacterActions => new CharacterActionsActions(this);
     public interface ICharacterMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface ICharacterActionsActions
+    {
+        void OnAButton(InputAction.CallbackContext context);
     }
 }

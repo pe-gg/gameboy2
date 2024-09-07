@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D _rb;
-
     [SerializeField] private float _movementSpeed = 5f;
-
+    [SerializeField] private float _xSpeed;
+    [SerializeField] private float _ySpeed;
+    private Rigidbody2D _rb;
+    private PlayerSword _sw;
     public Vector2 movement;
 
-    [SerializeField] private float playerFriction;
-
-    [SerializeField] private float _xSpeed;
-
-    [SerializeField] private float _ySpeed;
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _sw = GetComponentInChildren<PlayerSword>();
     }
 
     void FixedUpdate()
     {
-        PlayerMovement();
+         PlayerMovement();
     }
-    //
+
     public void HandleMovementInput(Vector2 input)
     {
         movement = input.normalized;
@@ -34,7 +29,9 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement()
     {
-        //_rb.velocity = Vector2.Lerp(_rb.velocity, _movement.normalized * _movementSpeed * Time.fixedDeltaTime, playerFriction);
-        _rb.velocity = movement * (_movementSpeed * Time.fixedDeltaTime);
+        if (_sw._swingCooldown)
+            _rb.velocity = Vector2.zero;
+        else
+            _rb.velocity = movement * (_movementSpeed * Time.fixedDeltaTime);
     }
 }
