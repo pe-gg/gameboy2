@@ -22,16 +22,12 @@ public class InputManager : MonoBehaviour
         if (characterInput == null)
         {
             characterInput = new CharacterInput();
-            if (!playerSword._swingCooldown)
-            {
-                characterInput.CharacterMovement.Movement.performed += i => playerController?.HandleMovementInput(i.ReadValue<Vector2>());
-                characterInput.CharacterMovement.Movement.performed += i => playerDirection?.GetMovementInput(i.ReadValue<Vector2>());
-                characterInput.CharacterMovement.Movement.canceled += i => playerDirection?.CacheLastInput(i.ReadValue<Vector2>());
+            characterInput.CharacterMovement.Movement.performed += i => playerController?.HandleMovementInput(i.ReadValue<Vector2>());
+            characterInput.CharacterMovement.Movement.performed += i => playerDirection?.GetMovementInput(i.ReadValue<Vector2>());
+            //characterInput.CharacterMovement.Movement.canceled += i => playerDirection?.CacheLastInput(i.ReadValue<Vector2>());
 
-                characterInput.CharacterActions.AButton.performed += i => playerSword?.StartAttack();
-                characterInput.CharacterActions.AButton.performed += i => playerAnimator.AttackSprite();
-            }
-
+            characterInput.CharacterActions.AButton.performed += i => playerSword?.StartAttack();
+            characterInput.CharacterActions.AButton.performed += i => playerAnimator.AttackSprite();
         }
 
         characterInput.Enable();

@@ -72,10 +72,10 @@ public class PlayerSword : MonoBehaviour
                 q = Quaternion.Euler(0, 0, 180);
                 return q;
             case 2:
-                q = Quaternion.Euler(0, 0, 90);
+                q = Quaternion.Euler(0, 0, 75);
                 return q;
             case 3:
-                q = Quaternion.Euler(0, 0, 90);
+                q = Quaternion.Euler(0, 0, 80);
                 return q;
         }
         return q;

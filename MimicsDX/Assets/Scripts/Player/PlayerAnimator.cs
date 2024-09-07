@@ -38,7 +38,6 @@ public class PlayerAnimator : MonoBehaviour
         _animator.SetBool("Attacking", true);
         while (_sw._swingCooldown)
         {
-            Debug.Log("attacking");
             yield return new WaitForFixedUpdate();
         }
         _animator.SetBool("Attacking", false);
