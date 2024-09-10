@@ -10,6 +10,7 @@ public class PlayerSword : MonoBehaviour
     [SerializeField] private float _swingSpeed = 3f;
     [SerializeField] private int _swordDuration = 20;
     private PlayerDirection _dir;
+    private Collider2D _col;
     private bool _swinging;
     public bool _swingCooldown { private set; get; }
     private int _swingTimer;
@@ -17,6 +18,8 @@ public class PlayerSword : MonoBehaviour
     private void Awake()
     {
         _dir = GetComponentInParent<PlayerDirection>();
+        _col = GetComponentInChildren<Collider2D>();
+        _col.gameObject.SetActive(false);
         _visual.enabled = false;
     }
 
@@ -34,6 +37,7 @@ public class PlayerSword : MonoBehaviour
         _swinging = true;
         StartCoroutine(SwordSwing());
         _swingCooldown = true;
+        _col.gameObject.SetActive(true);
     }
 
     IEnumerator SwordSwing()
@@ -58,6 +62,7 @@ public class PlayerSword : MonoBehaviour
         _visual.enabled = false;
         _swingCooldown = false;
         this.transform.rotation = FacingQuaternion();
+        _col.gameObject.SetActive(false);
         yield return new WaitForFixedUpdate();
     }
 
