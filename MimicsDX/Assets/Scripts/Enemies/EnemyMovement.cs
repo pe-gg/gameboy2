@@ -9,15 +9,21 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float acceptanceRadius;
     [SerializeField] private GameObject target;
     [SerializeField] private int painDuration;
-    private Rigidbody2D _rb;
-    private int defaultPainDuration;
+    [SerializeField] private EnemyState defaultState;
+
     private NavMeshAgent _agent;
-    private int _currentPoint;
-    public EnemyState currentState;
     private SpriteRenderer _spr;
     private EnemyCollision _col;
+    private Rigidbody2D _rb;
+
+    public EnemyState currentState;
+
+    private int defaultPainDuration;
+    private int _currentPoint;
+
     private bool _inPain;
     private bool _inPain2;
+    public bool playerDetected;
     public enum EnemyState
     {
         PATROL,
@@ -30,8 +36,10 @@ public class EnemyMovement : MonoBehaviour
         _spr = GetComponentInChildren<SpriteRenderer>();
         _col = GetComponentInChildren<EnemyCollision>();
         _rb = GetComponent<Rigidbody2D>();
-        currentState = EnemyState.FOLLOW;
+        currentState = defaultState;
         defaultPainDuration = painDuration;
+        if(defaultState == EnemyState.PATROL)
+            _agent.SetDestination(patrolPoints[_currentPoint].transform.position);
     }
     private void FixedUpdate()
     {
@@ -54,11 +62,29 @@ public class EnemyMovement : MonoBehaviour
 
     private void Patrol()
     {
+        Debug.Log("Patrol1");
+        if (playerDetected)
+        {
+            currentState = EnemyState.FOLLOW;
+            return;
+        }
+        if (Vector2.Distance(transform.position, patrolPoints[_currentPoint].transform.position) <= acceptanceRadius)
+        {
+            Debug.Log("Patrol2");
+            _currentPoint = (_currentPoint + 1) % patrolPoints.Length;
+            _agent.SetDestination(patrolPoints[_currentPoint].transform.position);
+        }
 
     }
 
     private void Follow()
     {
+        if (!playerDetected)
+        {
+            currentState = EnemyState.PATROL;
+            _agent.SetDestination(patrolPoints[_currentPoint].transform.position);
+            return;
+        }
         _agent.SetDestination(target.transform.position);
     }
 
