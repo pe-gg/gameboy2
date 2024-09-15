@@ -51,7 +51,7 @@ public class PlayerSword : MonoBehaviour
             else
                 this.transform.Rotate(0, 0, _swingSpeed);
             _swingTimer++;
-            _visual.transform.rotation = Quaternion.identity;
+            _visual.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             UpdateSwordFrame();
             if(_swingTimer == _swordDuration)
                 _swinging = false;

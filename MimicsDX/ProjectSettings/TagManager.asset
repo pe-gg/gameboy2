@@ -44,6 +44,9 @@ TagManager:
   - name: Tiles
     uniqueID: 2799276465
     locked: 0
+  - name: UI
+    uniqueID: 2526316113
+    locked: 0
   - name: Sprites
     uniqueID: 3073140399
     locked: 0
