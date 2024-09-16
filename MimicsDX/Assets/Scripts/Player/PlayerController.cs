@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private PlayerSword _sw;
     public Vector2 movement;
+    public bool haltMovement;
 
     void Awake()
     {
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (haltMovement)
+            return;
          PlayerMovement();
     }
 

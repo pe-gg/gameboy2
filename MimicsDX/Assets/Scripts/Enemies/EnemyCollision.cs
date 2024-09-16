@@ -9,6 +9,7 @@ public class EnemyCollision : BaseCollision
     private Rigidbody2D _rb;
     private EnemyMovement _nav;
     public Collider2D thisCol;
+    ICombatCollisions check;
     private void Awake()
     {
         _rb = GetComponentInParent<Rigidbody2D>();
@@ -20,9 +21,15 @@ public class EnemyCollision : BaseCollision
     {
         this.transform.rotation = Quaternion.identity;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        check = other.GetComponent<ICombatCollisions>();
+        if (check == null)
+            return;
+        PlayerCollision check2 = other.GetComponent<PlayerCollision>();
+        if (check2 == null)
+            return;
+        check2.HandleCollision(this);
     }
 
     public void HandleCollision(BaseCollision col)

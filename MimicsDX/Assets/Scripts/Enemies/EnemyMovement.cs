@@ -62,7 +62,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Patrol()
     {
-        Debug.Log("Patrol1");
         if (playerDetected)
         {
             currentState = EnemyState.FOLLOW;
@@ -70,7 +69,6 @@ public class EnemyMovement : MonoBehaviour
         }
         if (Vector2.Distance(transform.position, patrolPoints[_currentPoint].transform.position) <= acceptanceRadius)
         {
-            Debug.Log("Patrol2");
             _currentPoint = (_currentPoint + 1) % patrolPoints.Length;
             _agent.SetDestination(patrolPoints[_currentPoint].transform.position);
         }
@@ -97,7 +95,6 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator Pain()
     {
-        Debug.Log("pain");
         while (_inPain2)
         {
             _agent.velocity = _rb.velocity;
@@ -106,7 +103,6 @@ public class EnemyMovement : MonoBehaviour
                 _inPain2 = false;
             yield return new WaitForFixedUpdate();
         }
-        Debug.Log("out of pain");
         painDuration = defaultPainDuration;
         currentState = EnemyState.FOLLOW;
         _rb.velocity = Vector2.zero;
