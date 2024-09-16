@@ -8,9 +8,11 @@ public class PlayerHealth : MonoBehaviour
     private HUDView _view;
     public int hp;
     private int _previoushp;
-    private void Start()
+    private int _maxHealth;
+    private void Awake()
     {
         _view = GetComponent<HUDView>();
+        _maxHealth = hp;
     }
     private void FixedUpdate()
     {
@@ -30,6 +32,8 @@ public class PlayerHealth : MonoBehaviour
     }
     public void Heal(int amount)
     {
+        if (hp >= _maxHealth)
+            return;
         int newHP = hp + amount;
         hp = newHP;
     }
