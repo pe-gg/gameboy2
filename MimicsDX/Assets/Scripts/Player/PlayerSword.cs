@@ -9,6 +9,7 @@ public class PlayerSword : MonoBehaviour
     [SerializeField] private SpriteRenderer _visual;
     [SerializeField] private float _swingSpeed = 3f;
     [SerializeField] private int _swordDuration = 20;
+    private PlayerController _pc;
     private PlayerDirection _dir;
     private Collider2D _col;
     private bool _swinging;
@@ -17,6 +18,7 @@ public class PlayerSword : MonoBehaviour
 
     private void Awake()
     {
+        _pc = GetComponentInParent<PlayerController>();
         _dir = GetComponentInParent<PlayerDirection>();
         _col = GetComponentInChildren<Collider2D>();
         _col.gameObject.SetActive(false);
@@ -31,7 +33,7 @@ public class PlayerSword : MonoBehaviour
 
     public void StartAttack()
     {
-        if (_swingCooldown)
+        if (_swingCooldown || _pc.haltMovement)
             return;
         _visual.enabled = true;
         _swinging = true;

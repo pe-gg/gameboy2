@@ -21,7 +21,7 @@ public class PlayerDirection : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_pc.movement.sqrMagnitude > 0.01f) 
+        if (_pc.movement.sqrMagnitude > 0.01f && !_pc.haltMovement) 
             UpdateFacingDirection();
     }
 
