@@ -7,6 +7,11 @@ public class EnemyHealth : MonoBehaviour
 {
     public int hp;
     private int _previoushp;
+    private AudioManager _sfx; //this probably shouldn't be here, but whatever
+    private void Awake()
+    {
+        _sfx = FindObjectOfType<AudioManager>();
+    }
     private void FixedUpdate()
     {
         if (hp == _previoushp)
@@ -17,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
     {
         int newHP = hp - damage;
         hp = newHP;
+        _sfx.PlaySFX(3);
         if (hp <= 0)
         {
             Death();
@@ -28,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
     }
     private void Death()
     {
+        _sfx.PlaySFX(4);
         Destroy(this.gameObject);
     }
 }

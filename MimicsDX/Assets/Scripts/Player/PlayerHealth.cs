@@ -9,9 +9,11 @@ public class PlayerHealth : MonoBehaviour
     public int hp;
     private int _previoushp;
     private int _maxHealth;
+    private AudioManager _sfx; //again, probably shouldnt be here
     private void Awake()
     {
         _view = GetComponent<HUDView>();
+        _sfx = FindObjectOfType<AudioManager>();
         _maxHealth = hp;
     }
     private void FixedUpdate()
@@ -29,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerDeath();
         }
+        _sfx.PlaySFX(2);
     }
     public void Heal(int amount)
     {
@@ -36,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
             return;
         int newHP = hp + amount;
         hp = newHP;
+        _sfx.PlaySFX(5);
     }
     private void UpdateHealth()
     {

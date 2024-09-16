@@ -12,6 +12,8 @@ public class PlayerSword : MonoBehaviour
     private PlayerController _pc;
     private PlayerDirection _dir;
     private Collider2D _col;
+    private AudioManager _sfx;
+
     private bool _swinging;
     public bool _swingCooldown { private set; get; }
     private int _swingTimer;
@@ -21,6 +23,7 @@ public class PlayerSword : MonoBehaviour
         _pc = GetComponentInParent<PlayerController>();
         _dir = GetComponentInParent<PlayerDirection>();
         _col = GetComponentInChildren<Collider2D>();
+        _sfx = FindObjectOfType<AudioManager>();
         _col.gameObject.SetActive(false);
         _visual.enabled = false;
     }
@@ -40,6 +43,7 @@ public class PlayerSword : MonoBehaviour
         StartCoroutine(SwordSwing());
         _swingCooldown = true;
         _col.gameObject.SetActive(true);
+        _sfx.PlaySFX(1);
     }
 
     IEnumerator SwordSwing()
