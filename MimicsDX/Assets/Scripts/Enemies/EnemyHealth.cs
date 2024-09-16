@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
-    private HUDView _view;
     public int hp;
     private int _previoushp;
-    private void Start()
-    {
-        _view = GetComponent<HUDView>();
-    }
     private void FixedUpdate()
     {
         if (hp == _previoushp)
             return;
         UpdateHealth();
-        _view.UpdateHUD();
     }
     public void TakeDamage(int damage)
     {
@@ -25,20 +19,15 @@ public class PlayerHealth : MonoBehaviour
         hp = newHP;
         if (hp <= 0)
         {
-            PlayerDeath();
+            Death();
         }
-    }
-    public void Heal(int amount)
-    {
-        int newHP = hp + amount;
-        hp = newHP;
     }
     private void UpdateHealth()
     {
         _previoushp = hp;
     }
-    private void PlayerDeath()
+    private void Death()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Destroy(this.gameObject);
     }
 }

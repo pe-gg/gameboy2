@@ -7,6 +7,7 @@ public class PlayerCollision : BaseCollision
     private PlayerController _pc;
     private Rigidbody2D _rb;
     private Collider2D _thisCol;
+    private PlayerHealth _health;
     private bool isInPain;
     [SerializeField] private int _painDuration;
     private int _defaultPainDuration;
@@ -15,6 +16,7 @@ public class PlayerCollision : BaseCollision
         _pc = GetComponentInParent<PlayerController>();
         _rb = GetComponentInParent<Rigidbody2D>();
         _thisCol = GetComponent<Collider2D>();
+        _health = GetComponentInParent<PlayerHealth>();
         _defaultPainDuration = _painDuration;
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -34,6 +36,7 @@ public class PlayerCollision : BaseCollision
         isInPain = true;
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
         _rb.AddForce(10f * -direction, ForceMode2D.Impulse);
+        _health.TakeDamage(1);
         StartCoroutine("PainTimer");
     }
     IEnumerator PainTimer()
@@ -48,7 +51,6 @@ public class PlayerCollision : BaseCollision
         _pc.haltMovement = false;
         _thisCol.enabled = true;
         _painDuration = _defaultPainDuration;
-        Debug.Log("EndOfPain");
         yield return new WaitForFixedUpdate();
     }
 }

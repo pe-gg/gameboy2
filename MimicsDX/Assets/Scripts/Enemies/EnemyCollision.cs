@@ -9,11 +9,13 @@ public class EnemyCollision : BaseCollision
     private Rigidbody2D _rb;
     private EnemyMovement _nav;
     public Collider2D thisCol;
+    private EnemyHealth _health;
     ICombatCollisions check;
     private void Awake()
     {
         _rb = GetComponentInParent<Rigidbody2D>();
         _nav = GetComponentInParent<EnemyMovement>();
+        _health = GetComponentInParent<EnemyHealth>();
         thisCol = GetComponent<Collider2D>();
     }
 
@@ -44,5 +46,6 @@ public class EnemyCollision : BaseCollision
         _nav.currentState = EnemyMovement.EnemyState.PAIN;
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
         _rb.AddForce(knockbackForce * -direction, ForceMode2D.Impulse);
+        _health.TakeDamage(1);
     }
 }
