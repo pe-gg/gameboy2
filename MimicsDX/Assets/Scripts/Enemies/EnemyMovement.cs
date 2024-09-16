@@ -36,9 +36,12 @@ public class EnemyMovement : MonoBehaviour
         _spr = GetComponentInChildren<SpriteRenderer>();
         _col = GetComponentInChildren<EnemyCollision>();
         _rb = GetComponent<Rigidbody2D>();
-        currentState = defaultState;
         defaultPainDuration = painDuration;
-        if(defaultState == EnemyState.PATROL)
+    }
+    private void OnEnable()
+    {
+        currentState = defaultState;
+        if (defaultState == EnemyState.PATROL)
             _agent.SetDestination(patrolPoints[_currentPoint].transform.position);
     }
     private void FixedUpdate()
