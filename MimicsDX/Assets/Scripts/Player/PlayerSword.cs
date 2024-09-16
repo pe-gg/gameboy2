@@ -94,13 +94,13 @@ public class PlayerSword : MonoBehaviour
 
     private int FacingDirection()
     {
-        if (_dir.Direction.y == 1 && _dir.Direction.x == 0)
+        if (_dir.Direction.y > 0)
             return 0;
-        else if (_dir.Direction.y == -1 && _dir.Direction.x == 0)
+        else if (_dir.Direction.y < 0)
             return 1;
-        else if (_dir.Direction.x == 1 && _dir.Direction.y == 0)
+        else if (_dir.Direction.x > 0 && _dir.Direction.y <= 0)
             return 2;
-        else if (_dir.Direction.x == -1 && _dir.Direction.y == 0)
+        else if (_dir.Direction.x < 0 && _dir.Direction.y <= 0)
             return 3;
         else return 0;
     }
