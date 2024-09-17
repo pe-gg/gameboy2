@@ -9,6 +9,7 @@ public class PlayerAnimator : MonoBehaviour
     private SpriteRenderer _sprite;
     private PlayerDirection _dir;
     private PlayerSword _sw;
+    private PlayerRod _rod;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayerAnimator : MonoBehaviour
         _dir = GetComponent<PlayerDirection>();
         _sprite = GetComponent<SpriteRenderer>();
         _sw = GetComponentInChildren<PlayerSword>();
+        _rod = GetComponentInChildren<PlayerRod>();
     }
 
     private void FixedUpdate()
@@ -36,7 +38,7 @@ public class PlayerAnimator : MonoBehaviour
     private IEnumerator AttackTimer()
     {
         _animator.SetBool("Attacking", true);
-        while (_sw._swingCooldown)
+        while (_sw._swingCooldown || _rod._swingCooldown) //REPLACE
         {
             yield return new WaitForFixedUpdate();
         }

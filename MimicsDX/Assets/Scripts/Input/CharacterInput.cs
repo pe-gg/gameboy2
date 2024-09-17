@@ -107,17 +107,37 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f6809b4-985d-4755-bea7-bb29a2054969"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""73ae244a-ebae-4ff1-981f-24553ec0bcd0"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc3a7f55-f9ee-41f8-ae57-2a0d2b2f13a6"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -132,6 +152,7 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
         // CharacterActions
         m_CharacterActions = asset.FindActionMap("CharacterActions", throwIfNotFound: true);
         m_CharacterActions_AButton = m_CharacterActions.FindAction("AButton", throwIfNotFound: true);
+        m_CharacterActions_BButton = m_CharacterActions.FindAction("BButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,11 +261,13 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_CharacterActions;
     private List<ICharacterActionsActions> m_CharacterActionsActionsCallbackInterfaces = new List<ICharacterActionsActions>();
     private readonly InputAction m_CharacterActions_AButton;
+    private readonly InputAction m_CharacterActions_BButton;
     public struct CharacterActionsActions
     {
         private @CharacterInput m_Wrapper;
         public CharacterActionsActions(@CharacterInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @AButton => m_Wrapper.m_CharacterActions_AButton;
+        public InputAction @BButton => m_Wrapper.m_CharacterActions_BButton;
         public InputActionMap Get() { return m_Wrapper.m_CharacterActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -257,6 +280,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
             @AButton.started += instance.OnAButton;
             @AButton.performed += instance.OnAButton;
             @AButton.canceled += instance.OnAButton;
+            @BButton.started += instance.OnBButton;
+            @BButton.performed += instance.OnBButton;
+            @BButton.canceled += instance.OnBButton;
         }
 
         private void UnregisterCallbacks(ICharacterActionsActions instance)
@@ -264,6 +290,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
             @AButton.started -= instance.OnAButton;
             @AButton.performed -= instance.OnAButton;
             @AButton.canceled -= instance.OnAButton;
+            @BButton.started -= instance.OnBButton;
+            @BButton.performed -= instance.OnBButton;
+            @BButton.canceled -= instance.OnBButton;
         }
 
         public void RemoveCallbacks(ICharacterActionsActions instance)
@@ -288,5 +317,6 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
     public interface ICharacterActionsActions
     {
         void OnAButton(InputAction.CallbackContext context);
+        void OnBButton(InputAction.CallbackContext context);
     }
 }

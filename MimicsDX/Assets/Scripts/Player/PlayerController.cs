@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _ySpeed;
     private Rigidbody2D _rb;
     private PlayerSword _sw;
+    private PlayerRod _rod;
     public Vector2 movement;
     public bool haltMovement;
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sw = GetComponentInChildren<PlayerSword>();
+        _rod = GetComponentInChildren<PlayerRod>();
     }
 
     void FixedUpdate()
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement()
     {
-        if (_sw._swingCooldown)
+        if (_sw._swingCooldown || _rod._swingCooldown) //REPLACE
             _rb.velocity = Vector2.zero;
         else
             _rb.velocity = movement * (_movementSpeed * Time.fixedDeltaTime);

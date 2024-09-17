@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSword : MonoBehaviour
+public class PlayerRod : MonoBehaviour //THIS SCRIPT IS NOT STAYING LIKE THIS. WILL BE REFACTORING INTO PROPER WEAPON BASE SCRIPT
 {
     [SerializeField] private SwordSpriteSO _spr;
     [SerializeField] private SpriteRenderer _visual;
     [SerializeField] private float _swingSpeed = 3f;
     [SerializeField] private int _swordDuration = 20;
+    [SerializeField] private RodProjectile _proj;
+    [SerializeField] private float _projectileSpeed;
     private PlayerController _pc;
     private PlayerDirection _dir;
-    private Collider2D _col;
     private AudioManager _sfx;
 
     private bool _swinging;
@@ -21,15 +22,13 @@ public class PlayerSword : MonoBehaviour
     {
         _pc = GetComponentInParent<PlayerController>();
         _dir = GetComponentInParent<PlayerDirection>();
-        _col = GetComponentInChildren<Collider2D>();
         _sfx = FindObjectOfType<AudioManager>();
-        _col.gameObject.SetActive(false);
         _visual.enabled = false;
     }
 
     private void FixedUpdate()
     {
-        if(!_swingCooldown)
+        if (!_swingCooldown)
             this.transform.rotation = FacingQuaternion();
     }
 
@@ -41,7 +40,6 @@ public class PlayerSword : MonoBehaviour
         _swinging = true;
         StartCoroutine(SwordSwing());
         _swingCooldown = true;
-        _col.gameObject.SetActive(true);
         _sfx.PlaySFX(1);
     }
 
@@ -51,24 +49,51 @@ public class PlayerSword : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         while (_swinging)
         {
-            if(FacingDirection() == 2)
+            if (FacingDirection() == 2)
                 this.transform.Rotate(0, 0, -_swingSpeed);
             else
                 this.transform.Rotate(0, 0, _swingSpeed);
             _swingTimer++;
             _visual.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             UpdateSwordFrame();
-            if(_swingTimer == _swordDuration)
+            if (_swingTimer == _swordDuration)
                 _swinging = false;
             yield return new WaitForFixedUpdate();
         }
         _swingTimer = 0;
+        FireProjectile();
         yield return new WaitForSeconds(0.1f);
         _visual.enabled = false;
         _swingCooldown = false;
         this.transform.rotation = FacingQuaternion();
-        _col.gameObject.SetActive(false);
         yield return new WaitForFixedUpdate();
+    }
+
+    private void FireProjectile()
+    {
+        Vector2 forceDir = Vector2.zero;
+        Vector3 fireOffset = Vector3.zero;
+        switch (FacingDirection())
+        {
+            case 0:
+                forceDir = Vector2.up;
+                fireOffset = new Vector3(0, 1, 0);
+                break;
+            case 1:
+                forceDir = Vector2.down;
+                fireOffset = new Vector3(0, -1, 0);
+                break;
+            case 2:
+                forceDir = Vector2.right;
+                fireOffset = new Vector3(1, 0, 0);
+                break;
+            case 3:
+                forceDir = Vector2.left;
+                fireOffset = new Vector3(-1, 0, 0);
+                break;
+        }
+        RodProjectile firedProjectile = Instantiate(_proj, this.transform.position + fireOffset, Quaternion.identity);
+        firedProjectile.AddForce(forceDir * _projectileSpeed);
     }
 
     private Quaternion FacingQuaternion()
@@ -125,13 +150,13 @@ public class PlayerSword : MonoBehaviour
             _visual.sprite = _spr.frame2;
         else if (_swingTimer > _swordDuration / 3f)
             _visual.sprite = _spr.frame1;
-        else 
+        else
             _visual.sprite = _spr.frame0;
     }
 
     private void UpdateSwordRotation()
     {
-        switch(FacingDirection())
+        switch (FacingDirection())
         {
             case 0:
                 _visual.flipY = false;

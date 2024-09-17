@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     private PlayerDirection playerDirection;
     private PlayerAnimator playerAnimator;
     private PlayerSword playerSword;
+    private PlayerRod playerRod;
 
 
     CharacterInput characterInput;
@@ -18,6 +19,7 @@ public class InputManager : MonoBehaviour
         playerDirection = GetComponent<PlayerDirection>();
         playerAnimator = GetComponent<PlayerAnimator>();
         playerSword = GetComponentInChildren<PlayerSword>();
+        playerRod = GetComponentInChildren<PlayerRod>();
 
         if (characterInput == null)
         {
@@ -28,6 +30,8 @@ public class InputManager : MonoBehaviour
 
             characterInput.CharacterActions.AButton.performed += i => playerSword?.StartAttack();
             characterInput.CharacterActions.AButton.performed += i => playerAnimator.AttackSprite();
+            characterInput.CharacterActions.BButton.performed += i => playerRod?.StartAttack();
+            characterInput.CharacterActions.BButton.performed += i => playerAnimator.AttackSprite();
         }
 
         characterInput.Enable();

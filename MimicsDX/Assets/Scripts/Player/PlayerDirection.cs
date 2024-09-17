@@ -8,10 +8,12 @@ public class PlayerDirection : MonoBehaviour
     private Vector2 _newDir;
     private PlayerController _pc;
     private PlayerSword _sw;
+    private PlayerRod _rod;
 
     private void Awake()
     {
         _sw = GetComponentInChildren<PlayerSword>();
+        _rod = GetComponentInChildren<PlayerRod>();
         _pc = GetComponent<PlayerController>();
     }
     public void GetMovementInput(Vector2 input)
@@ -27,7 +29,7 @@ public class PlayerDirection : MonoBehaviour
 
     private void UpdateFacingDirection()
     {
-        if (_sw._swingCooldown)
+        if (_sw._swingCooldown || _rod._swingCooldown)
             return;
         Direction = _newDir;
     }
