@@ -22,5 +22,9 @@ public class AudioManager : MonoBehaviour
      * 3 = enemy pain
      * 4 = enemy death
      * 5 = health pickup
+     * 6 = magicrod shoot
+     * 7 = mana pickup
+     * 8 = door open/close
+     * 9 = pressure plate down
      */
 }

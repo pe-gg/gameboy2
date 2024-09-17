@@ -10,9 +10,11 @@ public class PlayerRod : MonoBehaviour //THIS SCRIPT IS NOT STAYING LIKE THIS. W
     [SerializeField] private int _swordDuration = 20;
     [SerializeField] private RodProjectile _proj;
     [SerializeField] private float _projectileSpeed;
+    [SerializeField] private int _manaCost;
     private PlayerController _pc;
     private PlayerDirection _dir;
     private AudioManager _sfx;
+    private PlayerMana _mana;
 
     private bool _swinging;
     public bool _swingCooldown { private set; get; }
@@ -23,6 +25,7 @@ public class PlayerRod : MonoBehaviour //THIS SCRIPT IS NOT STAYING LIKE THIS. W
         _pc = GetComponentInParent<PlayerController>();
         _dir = GetComponentInParent<PlayerDirection>();
         _sfx = FindObjectOfType<AudioManager>();
+        _mana = GetComponentInParent<PlayerMana>();
         _visual.enabled = false;
     }
 
@@ -34,13 +37,14 @@ public class PlayerRod : MonoBehaviour //THIS SCRIPT IS NOT STAYING LIKE THIS. W
 
     public void StartAttack()
     {
-        if (_swingCooldown || _pc.haltMovement)
+
+        if (_swingCooldown || _pc.haltMovement || _mana.mana < _manaCost)
             return;
         _visual.enabled = true;
         _swinging = true;
         StartCoroutine(SwordSwing());
         _swingCooldown = true;
-        _sfx.PlaySFX(1);
+        _sfx.PlaySFX(6);
     }
 
     IEnumerator SwordSwing()
@@ -62,6 +66,7 @@ public class PlayerRod : MonoBehaviour //THIS SCRIPT IS NOT STAYING LIKE THIS. W
         }
         _swingTimer = 0;
         FireProjectile();
+        _mana.TakeMana(_manaCost);
         yield return new WaitForSeconds(0.1f);
         _visual.enabled = false;
         _swingCooldown = false;

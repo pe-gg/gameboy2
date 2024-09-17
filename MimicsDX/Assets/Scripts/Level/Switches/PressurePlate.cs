@@ -8,12 +8,16 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] public UnityEvent SwitchActivated;
     [SerializeField] public UnityEvent SwitchDeactivated;
     [SerializeField] private SwitchController _controller;
+    [SerializeField] private PlateSpriteSO _spriteSO;
+    private SpriteRenderer _spr;
     private CanActivateSwitches _stepper;
+    private AudioManager _sfx;
     public bool isActivated { get; private set; }
 
     private void Awake()
     {
-        
+        _spr = GetComponent<SpriteRenderer>();
+        _sfx = FindObjectOfType<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,6 +29,8 @@ public class PressurePlate : MonoBehaviour
             return;
         _stepper = check;
         isActivated = true;
+        _spr.sprite = _spriteSO.frame1;
+        _sfx.PlaySFX(9);
         _controller.IncrementSwitchCount();
         OpenSignal();
     }
@@ -36,6 +42,7 @@ public class PressurePlate : MonoBehaviour
         isActivated = false;
         _controller.DecrementSwitchCount();
         _stepper = null;
+        _spr.sprite = _spriteSO.frame0;
         ExitSignal();
     }
 

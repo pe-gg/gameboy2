@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int hp;
     private int _previoushp;
     private AudioManager _sfx; //this probably shouldn't be here, but whatever
+    public UnityEvent OnEnemyDeath;
     private void Awake()
     {
         _sfx = FindObjectOfType<AudioManager>();
@@ -35,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
     private void Death()
     {
         _sfx.PlaySFX(4);
+        OnEnemyDeath?.Invoke();
         Destroy(this.gameObject);
     }
 }
