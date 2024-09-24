@@ -21,7 +21,10 @@ public class PlayerCollision : BaseCollision
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        if (other.gameObject.layer == 8)
+        {
+            Debug.Log("pit");
+        }
     }
     public void HandleCollision(BaseCollision col)
     {
@@ -52,5 +55,11 @@ public class PlayerCollision : BaseCollision
         _thisCol.enabled = true;
         _painDuration = _defaultPainDuration;
         yield return new WaitForFixedUpdate();
+    }
+
+    private void FellInPit()
+    {
+        _pc.haltMovement = true;
+        _thisCol.enabled = false;
     }
 }
