@@ -1329,8 +1329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 288
+  m_RefResolutionX: 160
+  m_RefResolutionY: 144
   m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 1
@@ -14771,7 +14771,7 @@ MonoBehaviour:
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8336538533158e749a7b4c934d80c81f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6a7bbafea3808324db265474b94958c3, type: 2}
 --- !u!4 &1024171776
 Transform:
   m_ObjectHideFlags: 0

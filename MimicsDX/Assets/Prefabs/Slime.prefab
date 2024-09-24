@@ -338,6 +338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  OnEnemyDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1452251621169377061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +365,8 @@ GameObject:
   - component: {fileID: 7822064374535784461}
   - component: {fileID: 5415692203492527960}
   - component: {fileID: 1331928962313496055}
+  - component: {fileID: 5275865897587186720}
+  - component: {fileID: 3480783621628776349}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -463,6 +468,39 @@ RotationConstraint:
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
-  m_Active: 0
-  m_IsLocked: 0
+  m_Active: 1
+  m_IsLocked: 1
   m_Sources: []
+--- !u!95 &5275865897587186720
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669376906517962122}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a988be82b0b04f545bea358eaacc9a69, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3480783621628776349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669376906517962122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c6e7313e5680a4890cbc7e95968c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

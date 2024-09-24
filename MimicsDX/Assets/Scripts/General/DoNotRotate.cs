@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DoNotRotate : MonoBehaviour
 {
-    //private SpriteRenderer _spr;
+    private Vector3 rot;
     private void Awake()
     {
-        //_spr = GetComponent<SpriteRenderer>();
+        rot = new Vector3(0f, 0f, 0f);
     }
 
     private void FixedUpdate()
     {
-        this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        this.transform.localEulerAngles = rot;
     }
 }

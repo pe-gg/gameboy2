@@ -21,6 +21,8 @@ public class EnemyMovement : MonoBehaviour
     private int defaultPainDuration;
     private int _currentPoint;
 
+    public float FacingDirection;
+
     private bool _inPain;
     private bool _inPain2;
     public bool playerDetected;
@@ -37,16 +39,18 @@ public class EnemyMovement : MonoBehaviour
         _col = GetComponentInChildren<EnemyCollision>();
         _rb = GetComponent<Rigidbody2D>();
         defaultPainDuration = painDuration;
+        _agent.updateRotation = false;
     }
     private void OnEnable()
     {
         currentState = defaultState;
         if (defaultState == EnemyState.PATROL)
             _agent.SetDestination(patrolPoints[_currentPoint].transform.position);
+        GetTargetDirection();
     }
     private void FixedUpdate()
     {
-        FixRotations();
+        transform.rotation = Quaternion.LookRotation(_agent.velocity.normalized);
         switch (currentState)
         {
             case EnemyState.PATROL:
@@ -74,6 +78,7 @@ public class EnemyMovement : MonoBehaviour
         {
             _currentPoint = (_currentPoint + 1) % patrolPoints.Length;
             _agent.SetDestination(patrolPoints[_currentPoint].transform.position);
+            GetTargetDirection();
         }
 
     }
@@ -87,6 +92,7 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
         _agent.SetDestination(target.transform.position);
+        GetTargetDirection();
     }
 
     private void StartPain()
@@ -114,9 +120,10 @@ public class EnemyMovement : MonoBehaviour
         yield return new WaitForFixedUpdate();
     }
 
-    private void FixRotations()
+    private void GetTargetDirection()
     {
-        _spr.gameObject.transform.rotation = Quaternion.identity;
-        _spr.gameObject.transform.position = this.transform.position;
+        Vector3 direction = (target.transform.position - this.transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        FacingDirection = angle;
     }
 }
