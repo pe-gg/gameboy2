@@ -12,6 +12,6 @@ public class DoNotRotate : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.transform.localEulerAngles = rot;
+        this.transform.localRotation = Quaternion.identity;
     }
 }

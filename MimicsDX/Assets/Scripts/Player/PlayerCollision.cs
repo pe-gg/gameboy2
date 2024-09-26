@@ -11,6 +11,9 @@ public class PlayerCollision : BaseCollision
     private bool isInPain;
     [SerializeField] private int _painDuration;
     private int _defaultPainDuration;
+
+    private bool _inPit;
+    private int _pitDuration;
     private void Awake()
     {
         _pc = GetComponentInParent<PlayerController>();
@@ -38,7 +41,7 @@ public class PlayerCollision : BaseCollision
         _pc.haltMovement = true;
         isInPain = true;
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
-        _rb.AddForce(10f * -direction, ForceMode2D.Impulse);
+        _rb.AddForce(7f * -direction, ForceMode2D.Impulse);
         _health.TakeDamage(1);
         StartCoroutine("PainTimer");
     }
@@ -61,5 +64,14 @@ public class PlayerCollision : BaseCollision
     {
         _pc.haltMovement = true;
         _thisCol.enabled = false;
+        _inPit = true;
+    }
+
+    IEnumerator PitTimer()
+    {
+
+        yield return new WaitForSeconds(2f);
+
+        yield return new WaitForFixedUpdate();
     }
 }

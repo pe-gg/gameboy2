@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,7 @@ public class CameraSwitcher : MonoBehaviour
     public UnityEvent OnSwitch;
     private PlayerController _pc;
     private bool _switch = false;
+    private bool _transitioning = false;
     private void Awake()
     {
         _pc = FindObjectOfType<PlayerController>();
@@ -43,8 +45,22 @@ public class CameraSwitcher : MonoBehaviour
     IEnumerator LockControl()
     {
         _pc.haltMovement = true;
+        _transitioning = true;
+        StartCoroutine(DumbPainFix());
         yield return new WaitForSeconds(0.75f);
         _pc.haltMovement = false;
+        _transitioning = false;
+        StopCoroutine("DumbPainFix");
         StopCoroutine("LockControl");
+    }
+
+    IEnumerator DumbPainFix()
+    {
+        while(_transitioning)
+        {
+            if(_pc.haltMovement == false)
+                _pc.haltMovement = true;
+            yield return new WaitForFixedUpdate();
+        }
     }
 }
