@@ -3,27 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyCollision : BaseCollision
+public class MageCollision : EnemyCollision 
 {
     [SerializeField] private float knockbackForce;
     private Rigidbody2D _rb;
-    private EnemyMovement _nav;
+    private MageMovement _nav;
     public Collider2D thisCol;
     private EnemyHealth _health;
     ICombatCollisions check;
     private void Awake()
     {
         _rb = GetComponentInParent<Rigidbody2D>();
-        _nav = GetComponentInParent<EnemyMovement>();
+        _nav = GetComponentInParent<MageMovement>();
         _health = GetComponentInParent<EnemyHealth>();
         thisCol = GetComponent<Collider2D>();
-        this.enabled = false;
-        Invoke("WeirdColliderFix", 0.1f);
-    }
-
-    private void WeirdColliderFix() //I have no idea why, but the collider starts freaking out if I don't do this
-    {
-        this.enabled = true;
     }
 
     private void FixedUpdate()
@@ -50,12 +43,7 @@ public class EnemyCollision : BaseCollision
 
     private void TakeKnockback(BaseCollision collidedWith)
     {
-        if(_nav == null)
-        {
-            Destroy(_rb.gameObject);
-            return;
-        }
-        _nav.currentState = EnemyMovement.EnemyState.PAIN;
+        _nav.currentState = MageMovement.EnemyState.PAIN;
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
         _rb.AddForce(knockbackForce * -direction, ForceMode2D.Impulse);
         _health.TakeDamage(1);

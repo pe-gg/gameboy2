@@ -12,6 +12,7 @@ public class HUDView : MonoBehaviour
     [SerializeField] private Image _healthBar;
     [SerializeField] private Image _manaBar;
     [SerializeField] private Image[] keys;
+    [SerializeField] private Image _rodImage;
 
     private void Awake()
     {
@@ -25,6 +26,11 @@ public class HUDView : MonoBehaviour
         _healthBar.fillAmount = healthPercent;
         float manaPercent = (float)_mana.mana / _mana.maxMana;
         _manaBar.fillAmount = manaPercent;
+    }
+
+    public void AddRodToHUD()
+    {
+        _rodImage.gameObject.SetActive(true);
     }
 
     public void UpdateKeys()

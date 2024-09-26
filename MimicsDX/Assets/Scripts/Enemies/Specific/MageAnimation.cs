@@ -4,15 +4,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class EnemyAnimator : MonoBehaviour
+public class MageAnimation : MonoBehaviour //this is so awful. i will set up a proper system next time
 {
     private Animator _an;
-    private EnemyMovement _en;
+    private MageMovement _en;
     private SpriteRenderer _spr;
     private bool _isAttacking = false;
     private void Awake()
     {
-        _en = GetComponentInParent<EnemyMovement>();
+        _en = GetComponentInParent<MageMovement>();
         _an = GetComponent<Animator>();
         _spr = GetComponent<SpriteRenderer>();
     }
@@ -39,7 +39,7 @@ public class EnemyAnimator : MonoBehaviour
         }
         else
         {
-            if(_en.gameObject.transform.localEulerAngles.y > 80f && _en.gameObject.transform.localEulerAngles.y < 260f) //right
+            if (_en.gameObject.transform.localEulerAngles.y > 80f && _en.gameObject.transform.localEulerAngles.y < 260f) //right
             {
                 x = -1;
                 y = 0;

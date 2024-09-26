@@ -20,6 +20,8 @@ public class PlayerRod : MonoBehaviour //THIS SCRIPT IS NOT STAYING LIKE THIS. W
     public bool _swingCooldown { private set; get; }
     private int _swingTimer;
 
+    public bool hasRod = false;
+
     private void Awake()
     {
         _pc = GetComponentInParent<PlayerController>();
@@ -38,7 +40,7 @@ public class PlayerRod : MonoBehaviour //THIS SCRIPT IS NOT STAYING LIKE THIS. W
     public void StartAttack()
     {
 
-        if (_swingCooldown || _pc.haltMovement || _mana.mana < _manaCost)
+        if (!hasRod || _swingCooldown || _pc.haltMovement || _mana.mana < _manaCost)
             return;
         _visual.enabled = true;
         _swinging = true;
