@@ -112,6 +112,7 @@ public class MageMovement : EnemyMovement
     private void FireProjectile()
     {
         Vector2 dir = target.transform.position - this.transform.position;
+        dir = dir.normalized;
         RodProjectile firedProjectile = Instantiate(_proj, this.transform.position, Quaternion.identity);
         firedProjectile.AddForce(_projectileSpeed * dir);
     }

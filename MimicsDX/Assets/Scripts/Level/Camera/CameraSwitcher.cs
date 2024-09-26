@@ -23,6 +23,7 @@ public class CameraSwitcher : MonoBehaviour
             return;
         SwitchCams();
         OnSwitch?.Invoke();
+        KillAllProjectiles();
         StartCoroutine(LockControl());
     }
 
@@ -61,6 +62,15 @@ public class CameraSwitcher : MonoBehaviour
             if(_pc.haltMovement == false)
                 _pc.haltMovement = true;
             yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private void KillAllProjectiles()
+    {
+        RodProjectile[] balls = FindObjectsOfType<RodProjectile>();
+        foreach (RodProjectile ball in balls)
+        {
+            Destroy(ball.gameObject);
         }
     }
 }

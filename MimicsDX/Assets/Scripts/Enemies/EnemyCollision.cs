@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyCollision : BaseCollision
 {
-    [SerializeField] private float knockbackForce;
-    private Rigidbody2D _rb;
-    private EnemyMovement _nav;
+    [SerializeField] protected float knockbackForce;
+    protected Rigidbody2D _rb;
+    protected EnemyMovement _nav;
     public Collider2D thisCol;
-    private EnemyHealth _health;
+    protected EnemyHealth _health;
     ICombatCollisions check;
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class EnemyCollision : BaseCollision
         check2.HandleCollision(this);
     }
 
-    public void HandleCollision(BaseCollision col)
+    public virtual void HandleCollision(BaseCollision col)
     {
         thisCol.enabled = false;
         Debug.Log(col.gameObject.name);

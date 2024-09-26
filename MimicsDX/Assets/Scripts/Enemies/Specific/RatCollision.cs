@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class MageCollision : EnemyCollision 
+public class RatCollision : EnemyCollision
 {
-    [SerializeField] private float knockbackForce;
-    private Rigidbody2D _rb;
-    private MageMovement _nav;
-    public Collider2D thisCol;
-    private EnemyHealth _health;
     ICombatCollisions check;
+    private BoxCollider2D _newCol;
     private void Awake()
     {
-        _rb = GetComponentInParent<Rigidbody2D>();
-        _nav = GetComponentInParent<MageMovement>();
-        _health = GetComponentInParent<EnemyHealth>();
-        thisCol = GetComponent<Collider2D>();
+        this._rb = GetComponentInParent<Rigidbody2D>();
+        this.thisCol = GetComponent<Collider2D>();
+        _newCol = GetComponent<BoxCollider2D>();
+        this.enabled = false;
+        _newCol.enabled = false;
+        Invoke("WeirdColliderFix", 0.1f);
+    }
+
+    private void WeirdColliderFix() 
+    {
+        this.enabled = true;
     }
 
     private void FixedUpdate()
@@ -32,20 +34,21 @@ public class MageCollision : EnemyCollision
         if (check2 == null)
             return;
         check2.HandleCollision(this);
+        Destroy(this._rb.gameObject);
     }
 
-    public void HandleCollision(BaseCollision col)
+    public override void HandleCollision(BaseCollision col)
     {
-        thisCol.enabled = false;
+        base.thisCol.enabled = false;
+        _newCol.enabled = true;
         Debug.Log(col.gameObject.name);
-        TakeKnockback(col);
+        this.TakeKnockback(col);
     }
 
     private void TakeKnockback(BaseCollision collidedWith)
     {
-        _nav.currentState = MageMovement.EnemyState.PAIN;
+        Debug.Log("hello?");
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
-        _rb.AddForce(knockbackForce * -direction, ForceMode2D.Impulse);
-        _health.TakeDamage(1);
+        this._rb.AddForce(base.knockbackForce * -direction, ForceMode2D.Impulse);
     }
 }

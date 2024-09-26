@@ -109,7 +109,7 @@ MonoBehaviour:
   FacingDirection: 0
   playerDetected: 0
   _proj: {fileID: 809331864215884396, guid: c7eb53df7ee93684dbee075bd21380b5, type: 3}
-  _projectileSpeed: 2
+  _projectileSpeed: 4
 --- !u!61 &765772854960149123
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2e1fc12e7c82d459fa81e94e851790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
+  hp: 2
   OnEnemyDeath:
     m_PersistentCalls:
       m_Calls: []
