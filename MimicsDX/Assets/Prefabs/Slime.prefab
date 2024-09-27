@@ -252,6 +252,7 @@ MonoBehaviour:
   painDuration: 20
   defaultState: 0
   currentState: 0
+  FacingDirection: 0
   playerDetected: 0
 --- !u!50 &1838692119600665956
 Rigidbody2D:
@@ -337,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2e1fc12e7c82d459fa81e94e851790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fx: {fileID: 6287018043366975931, guid: 4d9c6e2dfe7888c4091e9180365e9e3c, type: 3}
   hp: 3
   OnEnemyDeath:
     m_PersistentCalls:
@@ -367,6 +369,7 @@ GameObject:
   - component: {fileID: 1331928962313496055}
   - component: {fileID: 5275865897587186720}
   - component: {fileID: 3480783621628776349}
+  - component: {fileID: 8949198592316566656}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -502,5 +505,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95c6e7313e5680a4890cbc7e95968c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8949198592316566656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669376906517962122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dced0bcb7fcdf9e4e932c0b6df5571f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

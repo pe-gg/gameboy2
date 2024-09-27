@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _movementSpeed = 5f;
-    [SerializeField] private float _xSpeed;
-    [SerializeField] private float _ySpeed;
-    private Rigidbody2D _rb;
-    private PlayerSword _sw;
-    private PlayerRod _rod;
+    [SerializeField] protected float _movementSpeed = 150f;
+    [SerializeField] protected float _xSpeed;
+    [SerializeField] protected float _ySpeed;
+    public Rigidbody2D _rb { get; protected set; }
+    public PlayerSword _sw { get; protected set; }
+    public PlayerRod _rod { get; protected set; }
     public Vector2 movement;
     public bool haltMovement;
 

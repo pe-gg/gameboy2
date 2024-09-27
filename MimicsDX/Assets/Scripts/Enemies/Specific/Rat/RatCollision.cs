@@ -47,7 +47,7 @@ public class RatCollision : EnemyCollision
 
     private void TakeKnockback(BaseCollision collidedWith)
     {
-        Debug.Log("hello?");
+        _rb.velocity = Vector3.zero;
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
         this._rb.AddForce(base.knockbackForce * -direction, ForceMode2D.Impulse);
     }

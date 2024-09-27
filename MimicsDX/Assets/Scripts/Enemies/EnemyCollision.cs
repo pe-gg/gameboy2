@@ -52,12 +52,13 @@ public class EnemyCollision : BaseCollision
     {
         if(_nav == null)
         {
-            Destroy(_rb.gameObject);
-            return;
+             Destroy(_rb.gameObject);
+             return;
         }
         _nav.currentState = EnemyMovement.EnemyState.PAIN;
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
         _rb.AddForce(knockbackForce * -direction, ForceMode2D.Impulse);
         _health.TakeDamage(1);
     }
+
 }

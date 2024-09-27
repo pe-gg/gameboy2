@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] DeathFX _fx;
     public int hp;
     private int _previoushp;
     private AudioManager _sfx; //this probably shouldn't be here, but whatever
@@ -37,6 +38,7 @@ public class EnemyHealth : MonoBehaviour
     {
         _sfx.PlaySFX(4);
         OnEnemyDeath?.Invoke();
+        Instantiate(_fx, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

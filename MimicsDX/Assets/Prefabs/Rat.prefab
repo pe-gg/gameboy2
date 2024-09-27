@@ -69,7 +69,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.5
 --- !u!114 &2550022661764900613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7546d2286f118f4468db9e8148e78507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 50
+  knockbackForce: 30
   thisCol: {fileID: 0}
 --- !u!114 &6905024569229037606
 MonoBehaviour:
@@ -139,7 +139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
 --- !u!1 &5073302945962433147
 GameObject:
@@ -153,7 +153,8 @@ GameObject:
   - component: {fileID: 1534055049402615136}
   - component: {fileID: 4214179429259448500}
   - component: {fileID: 4124237685816499344}
-  - component: {fileID: 2048701746401186155}
+  - component: {fileID: 2167392943926991504}
+  - component: {fileID: -9132567004370618634}
   m_Layer: 7
   m_Name: Rat
   m_TagString: Untagged
@@ -170,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 5073302945962433147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.48, y: 0.6, z: -9.1594925}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -230,7 +231,7 @@ SpriteRenderer:
   m_SortingLayerID: -1221826897
   m_SortingLayer: 3
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1884574520, guid: 8526aa22f8b8316459c3e2106db34912, type: 3}
+  m_Sprite: {fileID: 1395076692, guid: 6eba6c9eb4aee41479f76e7974825dce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -268,8 +269,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2048701746401186155
-CircleCollider2D:
+--- !u!114 &2167392943926991504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073302945962433147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30dc95f46733f04cbec0d9542a2492b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &-9132567004370618634
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -301,5 +314,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Size: {x: 0.7, y: 0.7}
+  m_EdgeRadius: 0

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerDirection : MonoBehaviour
 {
-    public Vector2 Direction { get; private set; }
-    private Vector2 _newDir;
-    private PlayerController _pc;
-    private PlayerSword _sw;
-    private PlayerRod _rod;
+    public Vector2 Direction { get; protected set; }
+    protected Vector2 _newDir;
+    protected PlayerController _pc;
+    protected PlayerSword _sw;
+    protected PlayerRod _rod;
 
     private void Awake()
     {
