@@ -315,6 +315,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &56686088
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -798,6 +810,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1215771474}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1953,6 +1977,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &419057331
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2063,6 +2099,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2139571938}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5467,6 +5515,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2053995559}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -67501,6 +67561,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &877334886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67946,6 +68018,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &997765920
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -68298,7 +68382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1072880582936423786, guid: 06246d450c1aa9048b78b7b313eaac6b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6977784227239333125, guid: 06246d450c1aa9048b78b7b313eaac6b, type: 3}
       propertyPath: m_PixelPerfect
@@ -68687,6 +68771,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b712d378a2fc8da428b00b0c94b560ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1192339914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192339915}
+  m_Layer: 0
+  m_Name: PitSafetyCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1192339915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192339914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.845946, y: 0.5263589, z: -0.060607836}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204904027
 GameObject:
   m_ObjectHideFlags: 0
@@ -69217,6 +69332,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &1311310884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -69343,6 +69470,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1204904029}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -69673,6 +69812,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1176605565}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -70249,6 +70400,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &1614982346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70589,6 +70752,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &1680610433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70699,6 +70874,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1353122014}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -70839,6 +71026,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &1687190997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70949,6 +71148,18 @@ MonoBehaviour:
       - m_Target: {fileID: 981284848}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -71368,6 +71579,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &1783337479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71478,6 +71701,18 @@ MonoBehaviour:
       - m_Target: {fileID: 152096321}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -71632,6 +71867,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1064127671}
         m_TargetAssemblyTypeName: RoomToggle, Assembly-CSharp
         m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935365270}
+        m_TargetAssemblyTypeName: PitSafetyCheck, Assembly-CSharp
+        m_MethodName: ScreenTransition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -73306,6 +73553,7 @@ GameObject:
   - component: {fileID: 1935365266}
   - component: {fileID: 1935365268}
   - component: {fileID: 1935365269}
+  - component: {fileID: 1935365270}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -73590,6 +73838,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keys: 0
+--- !u!114 &1935365270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935365256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354269ff26dee224ca5065002dfd41ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1962057068
 GameObject:
   m_ObjectHideFlags: 0
@@ -73847,7 +74107,7 @@ Transform:
   m_GameObject: {fileID: 2007553195}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0025742054, y: 20.004646, z: 9.143277}
+  m_LocalPosition: {x: 0.9974258, y: 20.004646, z: 9.143277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99721,3 +99981,4 @@ SceneRoots:
   - {fileID: 856829660}
   - {fileID: 163455548}
   - {fileID: 1874951416}
+  - {fileID: 1192339915}

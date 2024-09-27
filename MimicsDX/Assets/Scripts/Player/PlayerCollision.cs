@@ -8,6 +8,8 @@ public class PlayerCollision : BaseCollision
     private Rigidbody2D _rb;
     private Collider2D _thisCol;
     private PlayerHealth _health;
+    private PitSafetyCheck _pitPos;
+    private PlayerAnimator _anim;
     private bool isInPain;
     [SerializeField] private int _painDuration;
     private int _defaultPainDuration;
@@ -20,13 +22,18 @@ public class PlayerCollision : BaseCollision
         _rb = GetComponentInParent<Rigidbody2D>();
         _thisCol = GetComponent<Collider2D>();
         _health = GetComponentInParent<PlayerHealth>();
+        _pitPos = GetComponentInParent<PitSafetyCheck>();
+        _anim = GetComponentInParent<PlayerAnimator>();
         _defaultPainDuration = _painDuration;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == 8)
         {
+            if (_inPit)
+                return;
             Debug.Log("pit");
+            FellInPit();
         }
     }
     public void HandleCollision(BaseCollision col)
@@ -62,16 +69,24 @@ public class PlayerCollision : BaseCollision
 
     private void FellInPit()
     {
+        _rb.velocity = Vector3.zero;
         _pc.haltMovement = true;
         _thisCol.enabled = false;
         _inPit = true;
+        _anim.FallingSprite();
+        StartCoroutine(PitTimer());
     }
 
     IEnumerator PitTimer()
     {
-
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(1.5f);
+        _pc.haltMovement = false;
+        _thisCol.enabled = true;
+        _inPit = false;
+        _rb.gameObject.transform.position = _pitPos.LastSafePos;
+        _health.TakeDamage(1);
+        _anim.FallingSprite();
+        StopCoroutine(PitTimer());
         yield return new WaitForFixedUpdate();
     }
 }

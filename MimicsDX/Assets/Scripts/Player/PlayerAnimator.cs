@@ -10,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerDirection _dir;
     private PlayerSword _sw;
     private PlayerRod _rod;
+    private bool _fallFlip = true; //laziness
 
     private void Awake()
     {
@@ -44,6 +45,12 @@ public class PlayerAnimator : MonoBehaviour
         }
         _animator.SetBool("Attacking", false);
         yield return new WaitForFixedUpdate();
+    }
+
+    public void FallingSprite()
+    {
+        _animator.SetBool("Falling", _fallFlip);
+        _fallFlip = !_fallFlip;
     }
 
 }
