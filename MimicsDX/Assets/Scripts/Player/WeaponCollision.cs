@@ -11,9 +11,13 @@ public class WeaponCollision : BaseCollision
         if (check == null)
             return;
         EnemyCollision check2 = other.GetComponent<EnemyCollision>();
-        if (check2 == null)
+        BossCollision check3 = other.GetComponent<BossCollision>();
+        if (check2 == null && check3 == null)
             return;
-        check2.HandleCollision(this);
+        if (check2 == null && check3 != null)
+            check3.HandleCollision(this);
+        else
+            check2.HandleCollision(this);
     }
     public void HandleCollision()
     {
