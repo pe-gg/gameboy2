@@ -11,7 +11,6 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _camera2;
     public UnityEvent OnSwitch;
     private PlayerController _pc;
-    private bool _switch = false;
     private bool _transitioning = false;
     private void Awake()
     {
@@ -29,17 +28,15 @@ public class CameraSwitcher : MonoBehaviour
 
     private void SwitchCams()
     {
-        if (!_switch)
+        if (_camera1.gameObject.activeSelf)
         {
             _camera1.gameObject.SetActive(false);
             _camera2.gameObject.SetActive(true);
-            _switch = !_switch;
         }
         else
         {
             _camera2.gameObject.SetActive(false);
             _camera1.gameObject.SetActive(true);
-            _switch = !_switch;
         }
     }
 

@@ -32,6 +32,8 @@ public class EnemyCollision : BaseCollision
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.layer == 8)
+            _health.TakeDamage(999);
         check = other.GetComponent<ICombatCollisions>();
         if (check == null)
             return;
