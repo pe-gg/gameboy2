@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 5519893318068618461}
   - component: {fileID: 2338358973012022119}
   - component: {fileID: 5235956126510486533}
+  - component: {fileID: 5605295940627331507}
   m_Layer: 0
   m_Name: EnemyCollision
   m_TagString: Untagged
@@ -440,3 +441,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 3
   thisCol: {fileID: 0}
+--- !u!1818360609 &5605295940627331507
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650756085145062670}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_Active: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1

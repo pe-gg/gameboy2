@@ -1542,6 +1542,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b712d378a2fc8da428b00b0c94b560ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &256942735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256942736}
+  m_Layer: 0
+  m_Name: EnemyColliderFix
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &256942736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256942735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &268003065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,7 +3190,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 35.993427, z: -21.474451}
+  m_LocalPosition: {x: 0, y: 0, z: -21.474451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5902,7 +5933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &717361011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68455,6 +68486,10 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 268003065}
+    - target: {fileID: 5605295940627331507, guid: beee56fc1faa5934eb65c07e3f3bbae0, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 256942736}
     - target: {fileID: 5712466848221746315, guid: beee56fc1faa5934eb65c07e3f3bbae0, type: 3}
       propertyPath: m_Sources.Array.size
       value: 1
@@ -68712,6 +68747,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4246417434205076549, guid: 9657862db9cc1114d8932a0534ce9dbd, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 256942736}
     - target: {fileID: 6103907436430887487, guid: 9657862db9cc1114d8932a0534ce9dbd, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -70806,6 +70845,10 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 33052538}
+    - target: {fileID: 5605295940627331507, guid: beee56fc1faa5934eb65c07e3f3bbae0, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 256942736}
     - target: {fileID: 5712466848221746315, guid: beee56fc1faa5934eb65c07e3f3bbae0, type: 3}
       propertyPath: m_Sources.Array.size
       value: 1
@@ -72040,6 +72083,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4246417434205076549, guid: 9657862db9cc1114d8932a0534ce9dbd, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 256942736}
     - target: {fileID: 6103907436430887487, guid: 9657862db9cc1114d8932a0534ce9dbd, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -73896,6 +73943,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4246417434205076549, guid: 9657862db9cc1114d8932a0534ce9dbd, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 256942736}
     - target: {fileID: 6103907436430887487, guid: 9657862db9cc1114d8932a0534ce9dbd, type: 3}
       propertyPath: m_Name
       value: Slime (1)
@@ -76480,7 +76531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1898556562
 Transform:
   m_ObjectHideFlags: 0
@@ -76901,7 +76952,7 @@ Transform:
   m_GameObject: {fileID: 1935365256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0379121, y: 33.4, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -104040,6 +104091,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 5605295940627331507, guid: beee56fc1faa5934eb65c07e3f3bbae0, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 256942736}
     - target: {fileID: 5712466848221746315, guid: beee56fc1faa5934eb65c07e3f3bbae0, type: 3}
       propertyPath: m_Sources.Array.size
       value: 1
@@ -104348,3 +104403,4 @@ SceneRoots:
   - {fileID: 1874951416}
   - {fileID: 958090391}
   - {fileID: 807617708}
+  - {fileID: 256942736}

@@ -11,24 +11,21 @@ public class EnemyCollision : BaseCollision
     public Collider2D thisCol;
     protected EnemyHealth _health;
     ICombatCollisions check;
+    private CopyEnemyController _checkCopy;
     private void Awake()
     {
         _rb = GetComponentInParent<Rigidbody2D>();
         _nav = GetComponentInParent<EnemyMovement>();
         _health = GetComponentInParent<EnemyHealth>();
         thisCol = GetComponent<Collider2D>();
-        this.enabled = false;
-        Invoke("WeirdColliderFix", 0.1f);
-    }
-
-    private void WeirdColliderFix() //I have no idea why, but the collider starts freaking out if I don't do this
-    {
-        this.enabled = true;
+        _checkCopy = GetComponentInParent<CopyEnemyController>();
     }
 
     private void FixedUpdate()
     {
-        this.transform.rotation = Quaternion.identity;
+        if (_checkCopy != null)
+            return;
+        this.gameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
