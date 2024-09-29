@@ -26,5 +26,9 @@ public class AudioManager : MonoBehaviour
      * 7 = mana pickup
      * 8 = door open/close
      * 9 = pressure plate down
+     * 10 = switch0
+     * 11 = switch1
+     * 12 = switch2
+     * 13 = switch3
      */
 }
