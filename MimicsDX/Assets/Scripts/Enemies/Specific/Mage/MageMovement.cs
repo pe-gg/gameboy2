@@ -101,7 +101,6 @@ public class MageMovement : EnemyMovement
 
     private IEnumerator AttackTimer()
     {
-        Debug.Log("waiting");
         yield return new WaitForSeconds(3f);
         if(currentState == EnemyState.PATROL)
             _attacked = true;

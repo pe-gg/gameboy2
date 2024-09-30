@@ -10,6 +10,7 @@ public class BossStates : MonoBehaviour
     [SerializeField] private RodProjectile[] _proj;
     private Collider2D _col;
     private PlayerController _target;
+    private BossAnimator _anim;
     public BossState currentState;
 
     private BossState _changeState;
@@ -23,31 +24,39 @@ public class BossStates : MonoBehaviour
     private bool _attacking;
     private bool _vulnerable;
     private bool _pain;
+    private bool _intro;
 
     private bool _inPain;
     private bool _inPain2;
     private int _painDuration = 20;
 
     private int _hitsTaken;
+    private bool _flicker = false;
     public enum BossState
     {
         IDLE,
         TELEPORTING,
         ATTACKING,
         VULNERABLE,
-        PAIN
+        PAIN,
+        INTRO
     }
 
     private void Awake()
     {
+        currentState = BossState.INTRO;
         _target = GameObject.Find("Player").GetComponent<PlayerController>();
         _col = GetComponent<Collider2D>();
+        _anim = GetComponent<BossAnimator>();
     }
 
     private void FixedUpdate()
     {
         switch (currentState)
         {
+            case BossState.INTRO:
+                Intro();
+                return;
             case BossState.IDLE:
                 Idle();
                 return;
@@ -66,12 +75,48 @@ public class BossStates : MonoBehaviour
         }
     }
 
+    private void Intro()
+    {
+        if (_intro)
+            return;
+        _intro = true;
+        _teleportAmount = 120;
+        _teleLoop = true;
+        StartCoroutine("IntroFlicker");
+    }
+
+    private IEnumerator IntroFlicker()
+    {
+        while (_teleLoop)
+        {
+            switch (_flicker)
+            {
+                case true:
+                    this.transform.position = _teleportPoints[0].transform.position;
+                    break;
+                case false:
+                    this.transform.position = _teleportPoints[3].transform.position;
+                    break;
+            }
+            _flicker = !_flicker;
+            _teleportAmount--;
+            if (_teleportAmount <= 0)
+                _teleLoop = false;
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForFixedUpdate();
+        SetChangeStateParameters(BossState.IDLE, 1f);
+        StartCoroutine("ChangeState");
+        StopCoroutine("IntroFlicker");
+    }
+
     private void Idle()
     {
         if (_idle)
             return;
         Debug.Log("idle");
         _idle = true;
+        _anim.SetAnimation(0); //idle
         SetChangeStateParameters(BossState.ATTACKING, _idleTime);
         StartCoroutine("ChangeState");
     }
@@ -85,6 +130,7 @@ public class BossStates : MonoBehaviour
     {
         if (_teleporting)
             return;
+        _anim.SetAnimation(0); //idle;
         Debug.Log("teleporting");
         _teleporting = true;
         Teleport();
@@ -103,6 +149,7 @@ public class BossStates : MonoBehaviour
             int choose = Random.Range(0, 3);
             this.transform.position = _teleportPoints[choose].transform.position;
             _teleportAmount--;
+            _anim.SetDirection(choose);
             if (_teleportAmount <= 0)
                 _teleLoop = false;
             yield return new WaitForFixedUpdate();
@@ -116,9 +163,10 @@ public class BossStates : MonoBehaviour
     {
         if (_attacking)
             return;
-        Debug.Log("attacking");
+        //Debug.Log("attacking");
+        _anim.SetAnimation(1); //attacking
         _attacking = true;
-        FireProjectile();
+        Invoke("FireProjectile", 1f);
     }
 
     private void FireProjectile()
@@ -144,6 +192,7 @@ public class BossStates : MonoBehaviour
         if (_vulnerable)
             return;
         _vulnerable = true;
+        _anim.SetAnimation(2); //pain anim
         StopCoroutine("ChangeState");
     }
     private void Pain()
@@ -156,6 +205,7 @@ public class BossStates : MonoBehaviour
         if (_hitsTaken >= 3)
         {
             SetChangeStateParameters(BossState.TELEPORTING, 0.1f);
+            _anim.SetAnimation(0); //idle
             StartCoroutine("ChangeState");
             _hitsTaken = 0;
             return;
@@ -201,7 +251,7 @@ public class BossStates : MonoBehaviour
         _attacking = false; //however, doing that is apparently evil and taboo and there's no resources online for it
         _vulnerable = false; //so the tl;dr here is my c# fundamentals continue to be abysmal and that is why this is here
         _pain = false; //it works, probably?
-        Debug.Log("SWITCHED STATE TO: " + currentState);
+        //Debug.Log("SWITCHED STATE TO: " + currentState);
         StopCoroutine("ChangeState");
     }
 }

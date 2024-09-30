@@ -11,6 +11,12 @@ public class AudioManager : MonoBehaviour
         _audio = GetComponents<AudioSource>();
     }
 
+    public void ChangeMus(int stop, int newMus)
+    {
+        _audio[stop].Stop();
+        _audio[newMus].Play();
+    }
+
     public void PlaySFX(int index)
     {
         _audio[index].Play();
@@ -30,5 +36,6 @@ public class AudioManager : MonoBehaviour
      * 11 = switch1
      * 12 = switch2
      * 13 = switch3
+     * 14 = boss theme?
      */
 }

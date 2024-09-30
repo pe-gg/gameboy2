@@ -19,6 +19,13 @@ public class EnemyCollision : BaseCollision
         _health = GetComponentInParent<EnemyHealth>();
         thisCol = GetComponent<Collider2D>();
         _checkCopy = GetComponentInParent<CopyEnemyController>();
+        this.enabled = false;
+        Invoke("GrossHack", 0.1f);
+    }
+
+    private void GrossHack()
+    {
+        this.enabled = true;
     }
 
     private void FixedUpdate()
@@ -29,7 +36,7 @@ public class EnemyCollision : BaseCollision
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 8 && _rb.gameObject.layer != 7)
             _health.TakeDamage(999);
         check = other.GetComponent<ICombatCollisions>();
         if (check == null)
