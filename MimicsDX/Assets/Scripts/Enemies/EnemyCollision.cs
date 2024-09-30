@@ -28,7 +28,7 @@ public class EnemyCollision : BaseCollision
         this.enabled = true;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_checkCopy != null)
             return;
