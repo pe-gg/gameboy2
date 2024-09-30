@@ -27,7 +27,7 @@ public class PlayerKeys : MonoBehaviour
     public void AddKey()
     {
         keys++;
-        _sfx.PlaySFX(7);
+        _sfx.PlaySFX(17);
     }
     private void UpdateKeyCount()
     {

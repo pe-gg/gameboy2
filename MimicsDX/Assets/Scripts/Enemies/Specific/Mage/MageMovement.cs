@@ -8,6 +8,7 @@ public class MageMovement : EnemyMovement
     [SerializeField] private RodProjectile _proj;
     [SerializeField] private float _projectileSpeed;
     private MageAnimation _anim;
+    private AudioManager _sfx;
 
     private int _defaultSpeed;
 
@@ -19,6 +20,7 @@ public class MageMovement : EnemyMovement
         _col = GetComponentInChildren<EnemyCollision>();
         _anim = GetComponentInChildren<MageAnimation>();
         _rb = GetComponent<Rigidbody2D>();
+        _sfx = FindObjectOfType<AudioManager>();
         defaultPainDuration = painDuration;
         _defaultSpeed = (int)_agent.speed;
         _agent.updateRotation = false;
@@ -72,7 +74,8 @@ public class MageMovement : EnemyMovement
             _rb.velocity = Vector3.zero;
             _agent.speed = 0.01f;
             _agent.SetDestination(target.transform.position);
-            Invoke("FireProjectile", 0.75f); //this is HORRIBLE
+            _sfx.PlaySFX(18);
+            Invoke("FireProjectile", 0.75f); 
             Invoke("SwitchState", 1f);
             _attacked = false;
         }
@@ -114,6 +117,7 @@ public class MageMovement : EnemyMovement
         dir = dir.normalized;
         RodProjectile firedProjectile = Instantiate(_proj, this.transform.position, Quaternion.identity);
         firedProjectile.AddForce(_projectileSpeed * dir);
+        _sfx.PlaySFX(19);
     }
 
     private void StartPain()

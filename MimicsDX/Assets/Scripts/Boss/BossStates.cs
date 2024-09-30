@@ -11,6 +11,7 @@ public class BossStates : MonoBehaviour
     private Collider2D _col;
     private PlayerController _target;
     private BossAnimator _anim;
+    private AudioManager _sfx;
     public BossState currentState;
 
     private BossState _changeState;
@@ -48,6 +49,7 @@ public class BossStates : MonoBehaviour
         _target = GameObject.Find("Player").GetComponent<PlayerController>();
         _col = GetComponent<Collider2D>();
         _anim = GetComponent<BossAnimator>();
+        _sfx = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate()
@@ -165,6 +167,7 @@ public class BossStates : MonoBehaviour
             return;
         //Debug.Log("attacking");
         _anim.SetAnimation(1); //attacking
+        _sfx.PlaySFX(18);
         _attacking = true;
         Invoke("FireProjectile", 1f);
     }
@@ -178,6 +181,7 @@ public class BossStates : MonoBehaviour
         dir = dir.normalized;
         RodProjectile firedProjectile = Instantiate(_proj[choose], this.transform.position, Quaternion.identity);
         firedProjectile.AddForce(5f * dir);
+        _sfx.PlaySFX(19);
         SetChangeStateParameters(BossState.TELEPORTING, 3f);
         StartCoroutine("ChangeState");
     }

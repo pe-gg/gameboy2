@@ -16,7 +16,7 @@ public class BossPainFlash : MonoBehaviour //stupid awful copypaste but i am sho
         _spr = GetComponent<SpriteRenderer>();
         _GUItxt = Shader.Find("GUI/Text Shader");
         _default = Shader.Find("Sprites/Default");
-        _painColour = new Color(1f, 0.74117647058f, 0.54901960784f, 1f);
+        _painColour = new Color(1f, 1f, 0.54901960784f, 1f);
     }
     private void FixedUpdate()
     {

@@ -6,11 +6,13 @@ public class RatCollision : EnemyCollision
 {
     ICombatCollisions check;
     private BoxCollider2D _newCol;
+    private RatAnimator _anim;
     private void Awake()
     {
         this._rb = GetComponentInParent<Rigidbody2D>();
         this.thisCol = GetComponent<Collider2D>();
         _newCol = GetComponent<BoxCollider2D>();
+        _anim = GetComponentInParent<RatAnimator>();
         this.enabled = false;
         _newCol.enabled = false;
         Invoke("WeirdColliderFix", 0.1f);
@@ -41,6 +43,7 @@ public class RatCollision : EnemyCollision
     {
         base.thisCol.enabled = false;
         _newCol.enabled = true;
+        _anim.SetPain();
         Debug.Log(col.gameObject.name);
         this.TakeKnockback(col);
     }

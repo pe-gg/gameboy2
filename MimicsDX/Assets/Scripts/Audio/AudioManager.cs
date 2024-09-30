@@ -37,5 +37,11 @@ public class AudioManager : MonoBehaviour
      * 12 = switch2
      * 13 = switch3
      * 14 = boss theme?
+     * 15 = victory theme
+     * 16 = null
+     * 17 = key pickup
+     * 18 = wizard charge
+     * 19 = wizard fire
+     * 20 = rod pickup
      */
 }
