@@ -10,6 +10,7 @@ public class PlayerCollision : BaseCollision
     private PlayerHealth _health;
     private PitSafetyCheck _pitPos;
     private PlayerAnimator _anim;
+    private PlayerPainFlash _flash;
     private bool isInPain;
     [SerializeField] private int _painDuration;
     private int _defaultPainDuration;
@@ -24,6 +25,7 @@ public class PlayerCollision : BaseCollision
         _health = GetComponentInParent<PlayerHealth>();
         _pitPos = GetComponentInParent<PitSafetyCheck>();
         _anim = GetComponentInParent<PlayerAnimator>();
+        _flash = GetComponentInParent<PlayerPainFlash>();
         _defaultPainDuration = _painDuration;
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,6 +49,7 @@ public class PlayerCollision : BaseCollision
         _thisCol.enabled = false;
         _pc.haltMovement = true;
         isInPain = true;
+        _flash.painTime = true;
         Vector3 direction = (collidedWith.transform.position - this.transform.position).normalized;
         _rb.AddForce(7f * -direction, ForceMode2D.Impulse);
         _health.TakeDamage(1);
@@ -62,11 +65,17 @@ public class PlayerCollision : BaseCollision
             yield return new WaitForFixedUpdate();
         }
         _pc.haltMovement = false;
-        _thisCol.enabled = true;
         _painDuration = _defaultPainDuration;
-        yield return new WaitForFixedUpdate();
+        StartCoroutine("IFrames");
     }
 
+    private IEnumerator IFrames()
+    {
+        yield return new WaitForSeconds(1f);
+        _flash.painTime = false;
+        _thisCol.enabled = true;
+        StopCoroutine("IFrames");
+    }
     private void FellInPit()
     {
         _rb.velocity = Vector3.zero;
@@ -83,9 +92,11 @@ public class PlayerCollision : BaseCollision
         _pc.haltMovement = false;
         _thisCol.enabled = true;
         _inPit = false;
+        _flash.painTime = true;
         _rb.gameObject.transform.position = _pitPos.LastSafePos;
         _health.TakeDamage(1);
         _anim.FallingSprite();
+        StartCoroutine("IFrames");
         StopCoroutine(PitTimer());
         yield return new WaitForFixedUpdate();
     }
